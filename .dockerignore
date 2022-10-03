@@ -1,0 +1,4 @@
+# Files to ignore
+.gitignore
+.gitkeep
+.node_modules/**
