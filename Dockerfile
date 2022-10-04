@@ -10,24 +10,20 @@ ENV SHELL=/bin/bash \
   HOSTNAME=${HOSTNAME:-casjaysdev-$IMAGE_NAME} \
   TZ=$TIMEZONE
 
-RUN mkdir -p /bin/ /config/ /data/ && \
-  arch="$(apk --print-arch)"; \
+RUN arch="$(apk --print-arch)"; \
+  mkdir -p /bin/ /config/ /data/ && \
   rm -Rf /bin/.gitkeep /config/.gitkeep /data/.gitkeep && \
   apk update -U --no-cache && \
   apk add --no-cache unzip && \
   case "$arch" in \
-  'x86_64') \
-  DOWNLOAD_URL="https://github.com/pocketbase/pocketbase/releases/download/v0.7.9/pocketbase_0.7.9_linux_amd64.zip"; \
-  ;; \
-  'aarch64') \
-  DOWNLOAD_URL="https://github.com/pocketbase/pocketbase/releases/download/v0.7.9/pocketbase_0.7.9_linux_arm64.zip"; \
-  ;; \
+  'x86_64') DOWNLOAD_URL="https://github.com/pocketbase/pocketbase/releases/download/v0.7.9/pocketbase_0.7.9_linux_amd64.zip" ;; \
+  'aarch64') DOWNLOAD_URL="https://github.com/pocketbase/pocketbase/releases/download/v0.7.9/pocketbase_0.7.9_linux_arm64.zip";; \
   *) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
   esac; \
   wget -q "$DOWNLOAD_URL" -O "/tmp/pocketbase.zip" && \
   unzip -q "/tmp/pocketbase.zip" -d "/tmp/pocketbase" && \
   rm -Rf "/tmp/pocketbase.zip" && \
-  mv -f "./pocketbase" "/usr/local/bin" && \
+  mv -f "/tmp/pocketbase/pocketbase" "/usr/local/bin" && \
   chmod +x "/usr/local/bin/pocketbase"
 
 COPY ./bin/. /usr/local/bin/
