@@ -17,10 +17,11 @@ RUN mkdir -p /bin/ /config/ /data/ && \
   apk add --no-cache unzip && \
   case "$arch" in \
   'x86_64') \
-   DOWNLOAD_URL="https://github.com/pocketbase/pocketbase/releases/download/v0.7.9/pocketbase_0.7.9_linux_amd64.zip"; \
+  DOWNLOAD_URL="https://github.com/pocketbase/pocketbase/releases/download/v0.7.9/pocketbase_0.7.9_linux_amd64.zip"; \
   ;; \
   'aarch64') \
   DOWNLOAD_URL="https://github.com/pocketbase/pocketbase/releases/download/v0.7.9/pocketbase_0.7.9_linux_arm64.zip"; \
+  ;; \
   *) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
   esac; \
   wget -q "$DOWNLOAD_URL" -O "/tmp/pocketbase.zip" && \
@@ -65,4 +66,3 @@ COPY --from=build /. /
 ENTRYPOINT [ "tini", "--" ]
 HEALTHCHECK CMD [ "/usr/local/bin/entrypoint-supabase.sh", "healthcheck" ]
 CMD [ "/usr/local/bin/entrypoint-supabase.sh" ]
-
