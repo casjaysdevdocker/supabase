@@ -3,7 +3,7 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ##@Version           :  202211131220-git
 # @@Author           :  Jason Hempstead
-# @@Contact          :  jason@casjaysdev.com
+# @@Contact          :  jason@casjaysdev.pro
 # @@License          :  LICENSE.md
 # @@ReadME           :  entrypoint.sh --help
 # @@Copyright        :  Copyright: (c) 2022 Jason Hempstead, Casjays Developments
@@ -71,7 +71,7 @@ TZ="${TZ:-America/New_York}"
 SERVICE_PORT="${SERVICE_PORT:-$PORT}"
 HOSTNAME="${HOSTNAME:-casjaysdev-supabase}"
 HOSTADMIN="${HOSTADMIN:-root@${DOMAINNAME:-$HOSTNAME}}"
-CERT_BOT_MAIL="${CERT_BOT_MAIL:-certbot-mail@casjay.net}"
+CERT_BOT_MAIL="${CERT_BOT_MAIL:-certbot-mail@casjay.pro}"
 SSL_CERT_BOT="${SSL_CERT_BOT:-false}"
 SSL_ENABLED="${SSL_ENABLED:-false}"
 SSL_DIR="${SSL_DIR:-/config/ssl}"
